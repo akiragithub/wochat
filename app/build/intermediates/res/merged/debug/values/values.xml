@@ -1850,6 +1850,9 @@
     <string name="country_name_china">中国</string>
     <string name="discover">发现</string>
     <string name="drift_bottle">漂流瓶</string>
+    <string name="enter_a_valid_code">请填写手机号码，并获取验证码！</string>
+    <string name="enter_a_valid_number_toast">请使用手机号码注册账户！</string>
+    <string name="enter_a_valid_phone">请输入正确的手机号码！</string>
     <string name="expression2">表情</string>
     <string name="games">游戏</string>
     <string name="group_chats">群聊</string>

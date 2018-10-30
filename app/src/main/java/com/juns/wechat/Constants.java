@@ -28,15 +28,19 @@ public interface Constants {
 	String Value = "data";
 	String Result = "status";
 	String DB_NAME = "WeChat.db";
-	String NET_ERROR = "网络错误，请稍后再试！";
+	//String NET_ERROR = "网络错误，请稍后再试！";
+	String NET_ERROR = "Please check your internet connection";
 	String BaiduPullKey = "Uvw5AMP15i9v1cUoS5aY7GR1";
 	// 主机地址
 	// public static String IP = "http://wechatjuns.sinaapp.com/";
 	// String MAIN_ENGINE = "http://10.16.16.79/wechat/index.php/mobile/";
-	String MAIN_ENGINE = "http://wechatjuns.sinaapp.com/index.php/";
+	//String MAIN_ENGINE = "http://wechatjuns.sinaapp.com/index.php/";
+	String MAIN_ENGINE = "192.168.1.138/tests/";
 
 	// 发送验证码 codeType 1注册 2修改密码
 	String SendCodeURL = "";
+	//Check student Id
+	String checkIdURL = MAIN_ENGINE + "check_student.php";
 	// 用户注册
 	String RegistURL = MAIN_ENGINE + "user/regigter";
 	// 用户登录

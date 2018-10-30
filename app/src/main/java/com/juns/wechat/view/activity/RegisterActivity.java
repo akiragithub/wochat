@@ -1,5 +1,6 @@
 package com.juns.wechat.view.activity;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -39,6 +40,7 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 	private Button btn_register, btn_send;
 	private EditText et_usertel, et_password, et_username, et_student_id;
 	private MyCount mc;
+	private static String TAG = "REGISTERACTIVITY";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -89,9 +91,9 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 			//TODO : must Be rigorously implemented later
 			if (mc == null) {
 				//mc = new MyCount(60000, 1000); // 第一参数是总的时间，第二个是间隔时间
-				mc = new MyCount(60, 000); // 第一参数是总的时间，第二个是间隔时间
+				//mc = new MyCount(60, 000); // 第一参数是总的时间，第二个是间隔时间
 			}
-			mc.start();
+			//mc.start();
 			checkId();
 			break;
 		case R.id.btn_register:
@@ -105,15 +107,15 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 	private void getRegister() {
 		final String name = et_usertel.getText().toString();
 		final String pwd = et_password.getText().toString();
-		String code = et_c.getText().toString();
+		//String code = et.getText().toString();
 		if (!Utils.isMobileNO(name)) {
 			Utils.showLongToast(RegisterActivity.this, getString(R.string.enter_a_valid_number_toast));
 			return;
 		}
-		if (TextUtils.isEmpty(code)) {
+		/*if (TextUtils.isEmpty(code)) {
 			Utils.showLongToast(RegisterActivity.this, "");
 			return;
-		}
+		}*/
 		if (TextUtils.isEmpty(name) || TextUtils.isEmpty(pwd)){
 				//|| TextUtils.isEmpty(code)) {
 			Utils.showLongToast(RegisterActivity.this, "请填写核心信息！");
@@ -207,21 +209,28 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 		params.put("id",id);
 		//params.put("telephone", "+22997816156");
 		params.put("codeType", "1");
-		netClient.post(Constants.CheckIdURL, params,
+		netClient.post(Constants.checkIdURL, params,
 				new JsonHttpResponseHandler() {
-					@Override
+                    @Override
+                    public void onFailure(Throwable e, JSONArray errorResponse) {
+                        //super.onFailure(e, errorResponse);
+                        Log.d(TAG,"Connexion failed : reason : " + errorResponse.toString());
+                    }
+                    @Override
 					public void onSuccess(JSONObject response) {
-						super.onSuccess(response);
+						//super.onSuccess(response);
 						try {
-							String result = response.getString("result");
-							System.out.println("返回的值" + response);
+							Log.d(TAG,"OnSuccess started now");
+							JSONObject result = response.getJSONObject("results");
+							Log.d(TAG,"Resonse from server : " + response.toString());
+							//System.out.println("返回的值" + response);
 							if (result == null) {
 								Utils.showLongToast(App.getInstance(),
 										Constants.NET_ERROR);
-							} else if (result.equals("Y")) {
-								String str = response.getString("value");
-								Utils.showLongToast(App.getInstance(), str);
-
+							} else if (result.getString("is_student").equals("1")) {
+								// in the server part is_student value is 1 for true and 0 for false
+								String studentClass = result.getString("student_class");
+								Utils.showLongToast(App.getInstance(), studentClass);
 							} else {
 								String str = response.getString("value");
 								Utils.showLongToast(App.getInstance(), str);
@@ -234,6 +243,7 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 						}
 					}
 				});
+		Log.d(TAG,"netclient finished its task");
 	}
 
 	// 手机号 EditText监听器
@@ -259,7 +269,7 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 					btn_send.setBackgroundResource(R.drawable.btn_bg_green);
 					btn_send.setTextColor(0xFFFFFFFF);
 					btn_send.setEnabled(true);
-					btn_register.setBackgroundResource(R.drawable.btn_bg_green));
+					btn_register.setBackgroundResource(R.drawable.btn_bg_green);
 					btn_register.setTextColor(0xFFFFFFFF);
 					btn_register.setEnabled(true);
 				} else {
@@ -299,6 +309,22 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 			boolean Sign3 = et_usertel.getText().length() > 0;
 			boolean Sign4 = et_password.getText().length() > 0;
 
+			String id = et_student_id.getText().toString();
+			if (id.length() >= 1) {
+					btn_send.setBackgroundResource(R.drawable.btn_bg_green);
+					btn_send.setTextColor(0xFFFFFFFF);
+					btn_send.setEnabled(true);
+					btn_register.setBackgroundResource(R.drawable.btn_bg_green);
+					btn_register.setTextColor(0xFFFFFFFF);
+					btn_register.setEnabled(true);
+			} else {
+				btn_send.setBackgroundResource(R.drawable.btn_enable_green);
+				btn_send.setTextColor(0xFFD0EFC6);
+				btn_send.setEnabled(false);
+				btn_register.setBackgroundResource(R.drawable.btn_enable_green);
+				btn_register.setTextColor(0xFFD0EFC6);
+				btn_register.setEnabled(true);
+			}
 			if (Sign1 & Sign2 & Sign3& Sign4) {
 				btn_register.setBackgroundResource(R.drawable.btn_bg_green);
 				btn_register.setTextColor(0xFFFFFFFF);

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Projects\\WeChat For Android Studio\\app\\build\\intermediates\\res\\merged\\debug\\values-v21\\values-v21.xml",
+            "outputFile": "D:\\Projects\\wochat\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v21\\values-v21.xml",
             "map": [
                 {
                     "source": "C:\\Users\\USER C\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-28.0.0.aar\\b2b916bab7e3a13d07f2b49ea3340dd4\\res\\values-v21\\values-v21.xml",
@@ -63,7 +63,7 @@
             ]
         },
         {
-            "outputFile": "D:\\Projects\\WeChat For Android Studio\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v21\\values-v21.xml",
+            "outputFile": "D:\\Projects\\wochat\\app\\build\\intermediates\\res\\merged\\debug\\values-v21\\values-v21.xml",
             "map": [
                 {
                     "source": "C:\\Users\\USER C\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-28.0.0.aar\\b2b916bab7e3a13d07f2b49ea3340dd4\\res\\values-v21\\values-v21.xml",

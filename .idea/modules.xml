@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/WeChat For Android Studio.iml" filepath="$PROJECT_DIR$/WeChat For Android Studio.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wochat.iml" filepath="$PROJECT_DIR$/wochat.iml" />
     </modules>
   </component>
 </project>

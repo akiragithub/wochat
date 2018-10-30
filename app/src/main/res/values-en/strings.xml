@@ -53,5 +53,5 @@
     <string name="your_name">Name</string>
     <string name="student_id">student id</string>
     <string name="official_student_id">official student id</string>
-    <string name="official_student_id">Check</string>
+    <string name="check_id">Check</string>
 </resources>

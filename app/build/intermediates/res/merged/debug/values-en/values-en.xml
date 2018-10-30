@@ -147,6 +147,7 @@
     <string name="chat">Chat</string>
     <string name="chatset">chat settings</string>
     <string name="chatting_is_dissolution">Chatting is dissolution...</string>
+    <string name="check_id">Check</string>
     <string name="clear_all_records">clear all chats？</string>
     <string name="clear_records">clear chat?</string>
     <string name="collection">Collection</string>
@@ -173,6 +174,9 @@
     <string name="downwaiting">downloading the file, please try again later</string>
     <string name="drift_bottle">Drift Bottle</string>
     <string name="em_user_remove">This user has been removed</string>
+    <string name="enter_a_valid_code">Make sure you entered your phone number and submit the code you get</string>
+    <string name="enter_a_valid_number_toast">Please enter a valid phone number！</string>
+    <string name="enter_a_valid_phone">Please, enter a valid phone number ！</string>
     <string name="exit_group">exit</string>
     <string name="exit_group_hint">the group messages will not be received after exiting the groups</string>
     <string name="expression">[expression]</string>
@@ -227,6 +231,7 @@
     <string name="now_refresh_list">refreshing contact list</string>
     <string name="number_validation">Code</string>
     <string name="official_accounts">Official Accounts</string>
+    <string name="official_student_id">official student id</string>
     <string name="ok">OK</string>
     <string name="password">password</string>
     <string name="password2">password</string>
@@ -266,6 +271,7 @@
     <string name="shake">shake</string>
     <string name="shake2">Shake</string>
     <string name="shopping">Shopping</string>
+    <string name="student_id">student id</string>
     <string name="sure_to_empty_this">Sure to empty this group chats?</string>
     <string name="temporary_does_not">Temporary does not support more than 10 m video!</string>
     <string name="text_ack_msg">read</string>
@@ -283,6 +289,7 @@
     <string name="wechat_id">WeChat ID</string>
     <string name="yangshengqi">use speaker</string>
     <string name="you_are_group">You are group of creators to remove from the group</string>
+    <string name="your_name">Name</string>
     <string name="your_password">Password</string>
     <string name="your_phone_number">Your phone number</string>
 </resources>

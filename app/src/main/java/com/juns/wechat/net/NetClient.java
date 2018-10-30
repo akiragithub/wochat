@@ -5,6 +5,7 @@ import java.io.File;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.juns.health.net.loopj.android.http.AsyncHttpClient;
@@ -40,11 +41,13 @@ public class NetClient {
 	private static DisplayImageOptions icon_options;
 	private static DisplayImageOptions user_icon_options;
 	private static DisplayImageOptions girl_options;
+	private static String TAG = "NETCLIENT";
 	// Imageload缓存目录
 	private static File cacheDir = new File(App.getHJYCacheDir() + "/Imageload");
 
 	public NetClient(Context context) {
 		NetClient.context = context;
+		Asyn
 		client = new AsyncHttpClient();
 		client.setTimeout(TIMEOUT);
 	}
@@ -182,11 +185,14 @@ public class NetClient {
 	 */
 	public void post(String url, RequestParams params,
 			final JsonHttpResponseHandler res) {
-		System.out.println("请求URL：" + url);
+		//System.out.println("请求URL：" + url);
+		Log.d(TAG,"请求URL：" + url);
 		if (!NetUtil.checkNetWork(context)) {
 			Utils.showLongToast(context, Constants.NET_ERROR);
+			Log.d(TAG,"Network Error checking the id");
 			return;
 		}
+		Log.d(TAG,"No Network Error checking the id");
 		try {
 			if (params != null) {
 				client.post(url, params, res);
@@ -195,6 +201,7 @@ public class NetClient {
 			}
 		} catch (Exception e) {
 			// TODO
+			Log.d(TAG,"Error posting informations");
 			e.printStackTrace();
 		}
 	}

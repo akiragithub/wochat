@@ -1175,7 +1175,8 @@ id encode_failed
 id encode_succeeded
 id end
 id end_padder
-id et_code
+id et_id
+id et_name
 id et_password
 id et_search
 id et_sendmessage
@@ -1416,6 +1417,7 @@ id tv_userid
 id tv_username
 id tv_weixin
 id tv_wenti
+id tv_your_name
 id tvmsg
 id tvname
 id txt_about
@@ -1799,6 +1801,7 @@ string change_the_group_name_failed_please
 string chat
 string chatset
 string chatting_is_dissolution
+string check_id
 string clear_all_records
 string clear_records
 string collection
@@ -1825,6 +1828,9 @@ string dissolution_group_hint
 string downwaiting
 string drift_bottle
 string em_user_remove
+string enter_a_valid_code
+string enter_a_valid_number_toast
+string enter_a_valid_phone
 string exit_group
 string exit_group_hint
 string expression
@@ -1879,6 +1885,7 @@ string notify
 string now_refresh_list
 string number_validation
 string official_accounts
+string official_student_id
 string ok
 string password
 string password2
@@ -1920,6 +1927,7 @@ string shake
 string shake2
 string shopping
 string status_bar_notification_info_overflow
+string student_id
 string sure_to_empty_this
 string temporary_does_not
 string text_ack_msg
@@ -1938,6 +1946,7 @@ string wallet
 string wechat_id
 string yangshengqi
 string you_are_group
+string your_name
 string your_password
 string your_phone_number
 style AlertDialog_AppCompat

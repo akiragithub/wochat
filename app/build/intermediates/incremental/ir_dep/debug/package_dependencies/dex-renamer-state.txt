@@ -1,4 +1,4 @@
-#Sat Oct 27 16:47:37 GMT+01:00 2018
-base.0=D\:\\Projects\\WeChat For Android Studio\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\10
+#Tue Oct 30 18:51:43 GMT+01:00 2018
+base.0=D\:\\Projects\\wochat\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\10
 path.0=classes.dex
 renamed.0=classes.dex
