@@ -1,12 +1,12 @@
 package com.juns.wechat.view.activity;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Message;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -41,6 +41,11 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 	private EditText et_usertel, et_password, et_username, et_student_id;
 	private MyCount mc;
 	private static String TAG = "REGISTERACTIVITY";
+	private String name;
+	private String password;
+	private String id;
+	private String studentClass;
+	private String phone;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -90,10 +95,10 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 		case R.id.btn_send:
 			//TODO : must Be rigorously implemented later
 			if (mc == null) {
-				//mc = new MyCount(60000, 1000); // 第一参数是总的时间，第二个是间隔时间
+				mc = new MyCount(60000, 1000); // 第一参数是总的时间，第二个是间隔时间
 				//mc = new MyCount(60, 000); // 第一参数是总的时间，第二个是间隔时间
 			}
-			//mc.start();
+			mc.start();
 			checkId();
 			break;
 		case R.id.btn_register:
@@ -105,40 +110,34 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 	}
 
 	private void getRegister() {
-		final String name = et_usertel.getText().toString();
-		final String pwd = et_password.getText().toString();
-		//String code = et.getText().toString();
-		if (!Utils.isMobileNO(name)) {
+		//final String name = et_username.getText().toString();
+		phone = et_usertel.getText().toString();
+		password = et_password.getText().toString();
+		if (!Utils.isMobileNO(phone)) {
 			Utils.showLongToast(RegisterActivity.this, getString(R.string.enter_a_valid_number_toast));
 			return;
 		}
-		/*if (TextUtils.isEmpty(code)) {
-			Utils.showLongToast(RegisterActivity.this, "");
-			return;
-		}*/
-		if (TextUtils.isEmpty(name) || TextUtils.isEmpty(pwd)){
-				//|| TextUtils.isEmpty(code)) {
-			Utils.showLongToast(RegisterActivity.this, "请填写核心信息！");
+		if (TextUtils.isEmpty(password)){
+			Utils.showLongToast(RegisterActivity.this, getString(R.string.set_name_and_pwd));
 			return;
 		}
-		getLoadingDialog("正在注册...  ").show();
+		getLoadingDialog(getString(R.string.signing_up)).show();
 		btn_register.setEnabled(false);
 		btn_send.setEnabled(false);
 		RequestParams params = new RequestParams();
 		params.put("username", name);
-		params.put("password", DES.md5Pwd(pwd));
+		params.put("password", DES.md5Pwd(password));
 		// params.put("checkCode", code);
 		netClient.post(Constants.RegistURL, params, new BaseJsonRes() {
-
 			@Override
 			public void onMySuccess(String data) {
 				Utils.putValue(RegisterActivity.this, Constants.UserInfo, data);
 				Utils.putValue(RegisterActivity.this, Constants.NAME, name);
 				Utils.putValue(RegisterActivity.this, Constants.PWD,
-						DES.md5Pwd(pwd));
+						DES.md5Pwd(password));
 				Utils.putBooleanValue(RegisterActivity.this,
 						Constants.LoginState, true);
-				getChatserive(name, DES.md5Pwd(pwd));
+				getChatserive(name, DES.md5Pwd(password));
 			}
 
 			@Override
@@ -201,24 +200,31 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 	}
 
 	private void checkId() {
-		String name = et_username.getText().toString();
-		String id = et_student_id.getText().toString();
+		name = et_username.getText().toString();
+		id = et_student_id.getText().toString();
 		RequestParams params = new RequestParams();
 		Toast.makeText(context, "Wait while we process your identity", Toast.LENGTH_SHORT).show();
 		params.put("name", name);
 		params.put("id",id);
 		//params.put("telephone", "+22997816156");
 		params.put("codeType", "1");
-		netClient.post(Constants.checkIdURL, params,
+        netClient.post(Constants.checkIdURL, params,
 				new JsonHttpResponseHandler() {
-                    @Override
-                    public void onFailure(Throwable e, JSONArray errorResponse) {
-                        //super.onFailure(e, errorResponse);
-                        Log.d(TAG,"Connexion failed : reason : " + errorResponse.toString());
-                    }
-                    @Override
+					@Override
+					protected void handleMessage(Message msg) {
+						super.handleMessage(msg);
+						Log.d(TAG,"New message to handle : "+msg.toString());
+					}
+
+					@Override
+					public void onFailure(Throwable e, JSONObject errorResponse) {
+						super.onFailure(e, errorResponse);
+						Log.d(TAG,"Connexion failed : reason : " + e.toString());
+					}
+					@Override
 					public void onSuccess(JSONObject response) {
-						//super.onSuccess(response);
+						super.onSuccess(response);
+						Log.d(TAG,"Successful id cheick performed");
 						try {
 							Log.d(TAG,"OnSuccess started now");
 							JSONObject result = response.getJSONObject("results");
@@ -231,11 +237,13 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 								// in the server part is_student value is 1 for true and 0 for false
 								String studentClass = result.getString("student_class");
 								Utils.showLongToast(App.getInstance(), studentClass);
+								btn_register.setEnabled(true);
 							} else {
-								String str = response.getString("value");
-								Utils.showLongToast(App.getInstance(), str);
+								// in case of wrong id or name;
+								Utils.showLongToast(App.getInstance(), getString(R.string.wrong_auth_toast));
 								mc.cancel();
 								btn_send.setEnabled(true);
+								// TODO what is the meaning of the words below ?
 								btn_send.setText("发送验证码");
 							}
 						} catch (JSONException e) {
@@ -246,7 +254,7 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 		Log.d(TAG,"netclient finished its task");
 	}
 
-	// 手机号 EditText监听器
+    // 手机号 EditText监听器
 	class TelTextChange implements TextWatcher {
 
 		@Override
@@ -263,7 +271,7 @@ public class RegisterActivity extends BaseActivity implements OnClickListener {
 		@Override
 		public void onTextChanged(CharSequence cs, int start, int before,
 				int count) {
-			String phone = et_usertel.getText().toString();
+			phone = et_usertel.getText().toString();
 			if (phone.length() >= 10) {
 				if (Utils.isMobileNO(phone)) {
 					btn_send.setBackgroundResource(R.drawable.btn_bg_green);

@@ -1,4 +1,4 @@
-#Tue Oct 30 19:05:58 GMT+01:00 2018
+#Wed Oct 31 15:32:50 GMT+01:00 2018
 base.0=D\:\\Projects\\wochat\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\4
 path.0=classes.dex
 renamed.0=classes.dex

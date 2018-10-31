@@ -16,6 +16,8 @@
     <string name="enter_a_valid_number_toast">请使用手机号码注册账户！</string>
     <string name="enter_a_valid_code">请填写手机号码，并获取验证码！</string>
     <string name="enter_a_valid_phone">请输入正确的手机号码！</string>
+    <string name="set_name_and_pwd">请填写核心信息！</string>
+    <string name="signing_up">正在注册....</string>
 
 
 

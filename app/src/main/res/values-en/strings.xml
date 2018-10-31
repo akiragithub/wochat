@@ -16,6 +16,8 @@
     <string name="enter_a_valid_number_toast">Please enter a valid phone number！</string>
     <string name="enter_a_valid_code">Make sure you entered your phone number and submit the code you get</string>
     <string name="enter_a_valid_phone">Please, enter a valid phone number ！</string>
+    <string name="set_name_and_pwd">Please set a password !</string>
+    <string name="signing_up">"Signing up...."</string>
 
 
     <string name="discover">Discover</string>
@@ -54,4 +56,5 @@
     <string name="student_id">student id</string>
     <string name="official_student_id">official student id</string>
     <string name="check_id">Check</string>
+    <string name="wrong_auth_toast">Please Cross check your id and your name, then submit once again; or report to the developer at akiratech1@gmail.com</string>
 </resources>

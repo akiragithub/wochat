@@ -35,7 +35,7 @@ public interface Constants {
 	// public static String IP = "http://wechatjuns.sinaapp.com/";
 	// String MAIN_ENGINE = "http://10.16.16.79/wechat/index.php/mobile/";
 	//String MAIN_ENGINE = "http://wechatjuns.sinaapp.com/index.php/";
-	String MAIN_ENGINE = "192.168.1.138/tests/";
+	String MAIN_ENGINE = "http://192.168.43.221/tests/";
 
 	// 发送验证码 codeType 1注册 2修改密码
 	String SendCodeURL = "";

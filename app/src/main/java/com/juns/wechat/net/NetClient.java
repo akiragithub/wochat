@@ -33,7 +33,7 @@ public class NetClient {
 	// http 请求
 	private AsyncHttpClient client;
 	// 超时时间
-	private int TIMEOUT = 20000;
+	private int TIMEOUT = 10000;
 
 	// 图片加载类
 	private static ImageLoader mImageLoader;
@@ -47,7 +47,6 @@ public class NetClient {
 
 	public NetClient(Context context) {
 		NetClient.context = context;
-		Asyn
 		client = new AsyncHttpClient();
 		client.setTimeout(TIMEOUT);
 	}
@@ -187,11 +186,11 @@ public class NetClient {
 			final JsonHttpResponseHandler res) {
 		//System.out.println("请求URL：" + url);
 		Log.d(TAG,"请求URL：" + url);
-		if (!NetUtil.checkNetWork(context)) {
+		/*if (!NetUtil.checkNetWork(context)) {
 			Utils.showLongToast(context, Constants.NET_ERROR);
 			Log.d(TAG,"Network Error checking the id");
 			return;
-		}
+		}*/
 		Log.d(TAG,"No Network Error checking the id");
 		try {
 			if (params != null) {
